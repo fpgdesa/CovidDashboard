@@ -165,7 +165,7 @@ class DashboardMiguel(View):
     
     def get(self,request):
     
-        data_path = finders.find('Dados_paty.csv')
+        data_path = finders.find('Dados_miguel.csv')
 
         data = pd.read_csv(data_path)
 
