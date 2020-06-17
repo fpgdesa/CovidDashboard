@@ -40,10 +40,10 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{% url 'index' %}" class="nav-link">Home</a>
+        <a href="{% url 'index' %}" class="nav-link">Página Inicial</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="#" class="nav-link">Contato</a>
       </li>
     </ul>  
 
@@ -86,6 +86,14 @@
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+		           <a href="{% url 'miguel' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Miguel Pereira</p>
+                </a>
+              </li>             
+            </ul>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{% url 'paty' %} " class="nav-link">

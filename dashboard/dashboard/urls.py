@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from frontpage.views import DashboardFront
 from frontpage.views import DashboardPaty
+from frontpage.views import DashboardMiguel
+
 from django.urls import path,include
 from django.conf.urls import url
 
@@ -23,4 +25,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',DashboardFront.as_view(), name='index'),
     path('cidades/paty/', DashboardPaty.as_view(), name='paty'),
+    path('cidades/miguel/',DashboardMiguel.as_view(), name='miguel'),
     ]
