@@ -180,7 +180,7 @@ class DashboardMiguel(View):
         fig = data2[['Confirmados']].iplot(asFigure=True, kind='scatter',
                xTitle='Data',
                yTitle='Número de Casos',
-               vspan={'x0':'08/06/20','x1':data2.iloc[-1].name,
+               vspan={'x0':'01/06/20','x1':data2.iloc[-1].name,
                'color':'rgba(0,0,50,0.3)','fill':True,'opacity':.3})
 
         fig.update_layout(
