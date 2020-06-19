@@ -216,12 +216,12 @@ class DashboardMiguel(View):
 
         confirmados = str(data2['Confirmados'].iloc[-1])
 
-        curados = str(data2['Curados'].iloc[-1])
+        curados = str(int(data2['Curados'].iloc[-1]))
 
-        internados = str(data2['Internados'].iloc[-1])
+        internados = str(int(data2['Internados'].iloc[-1]))
 
 
-        obitos = str(data2['Obitos'].iloc[-1])
+        obitos = str(int(data2['Obitos'].iloc[-1]))
 
         ultima_atu = data2.iloc[-1].name
 
