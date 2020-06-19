@@ -224,10 +224,10 @@
       </div>
 
       <div>
-        {% autoescape off %}
-      {{ plot_div }}
-      {% endautoescape %}
-      </div>
+          {% autoescape off %}
+        {{ plot_div }}
+        {% endautoescape %}
+        </div>
       
       
 	<div class="container-fluid">
@@ -239,15 +239,18 @@
                 <h3 class="card-title">Novos Casos Suspeitos Diários</h3>                
               </div>
               <div class="card-body">
-                
-             	  {% autoescape off %}
-		  {{ bar_suspeitos }}
-		  {% endautoescape %}
+                            	  
 
             </div>
             <!-- /.card -->
           </div>
         </div>
+      </div>
+
+      <div>
+        {% autoescape off %}
+		  {{ bar_suspeitos }}
+		  {% endautoescape %}
       </div>
 
  <div class="container-fluid">
@@ -260,9 +263,6 @@
               </div>
               <div class="card-body">
 
-                  {% autoescape off %}
-                  {{ plot_bar_sem }}
-                  {% endautoescape %}
 
             </div>
             <!-- /.card -->
@@ -270,6 +270,11 @@
         </div>
       </div>
 
+      <div>
+        {% autoescape off %}
+        {{ plot_bar_sem }}
+        {% endautoescape %}
+      </div>
 
 
 
