@@ -4370,6 +4370,8 @@ input[type="button"].btn-block {
 
 .card-text:last-child {
   margin-bottom: 0;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .card-link:hover {
