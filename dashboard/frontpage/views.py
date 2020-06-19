@@ -91,12 +91,12 @@ class DashboardPaty(View):
 
         confirmados = str(data2['Confirmados'].iloc[-1])
 
-        curados = str(data2['Curados'].iloc[-1])
+        curados = str(int(data2['Curados'].iloc[-1]))
 
-        internados = str(data2['Internados'].iloc[-1])
+        internados = str(int(data2['Internados'].iloc[-1]))
 
 
-        obitos = str(data2['Obitos'].iloc[-1])
+        obitos = str(int(data2['Obitos'].iloc[-1]))
 
         ultima_atu = data2.iloc[-1].name
 
@@ -143,7 +143,7 @@ class DashboardPaty(View):
         trace_casos_semanais = plot(figura_bar_casos_semanais, include_plotlyjs=True, output_type='div')
 
         
-        return render(request,"dashboard/cidades/paty/paty.html", context={'plot_div': trace,'bar_suspeitos': trace2, 'confirmados':confirmados,'curados':45,'internados':internados,'obitos':obitos,'ultima_atu': ultima_atu,'plot_bar_sem':trace_casos_semanais})
+        return render(request,"dashboard/cidades/paty/paty.html", context={'plot_div': trace,'bar_suspeitos': trace2, 'confirmados':confirmados,'curados':curados,'internados':internados,'obitos':obitos,'ultima_atu': ultima_atu,'plot_bar_sem':trace_casos_semanais})
 
 
 
