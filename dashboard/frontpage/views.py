@@ -208,7 +208,7 @@ class DashboardMiguel(View):
                    offsetgroup=0)
 
         layout = go.Layout(
-                 paper_bgcolor='rgba(0,0,0,0)',
+                 paper_bgcolor='rgba(0,0,0,1)',
                  plot_bgcolor='rgba(0,0,0,0)')
 
         dat = [bar_fig]
