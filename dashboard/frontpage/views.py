@@ -83,7 +83,7 @@ class DashboardPaty(View):
                    offsetgroup=0)
 
         layout = go.Layout(
-                 paper_bgcolor='rgba(0,0,50,0.02)',
+                 paper_bgcolor='rgba(0,0,50,0.015)',
                  plot_bgcolor='rgba(0,0,50,0.0)')
 
         dat = [bar_fig]
