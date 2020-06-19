@@ -66,7 +66,7 @@ class DashboardPaty(View):
                y=data2['Confirmados'].iloc[-1],
                xref="x",
                yref="y",
-               text="<b>" + str(data2['Confirmados'].iloc[-1]) + " casos confirmados em " + str(data2.iloc[-1].name) + "<b>",
+               text="<b>" + str(data2['Confirmados'].iloc[-1]) + " casos em " + str(data2.iloc[-1].name) + "<b>",
                showarrow=True,
                arrowhead=7,
                ax=0,
