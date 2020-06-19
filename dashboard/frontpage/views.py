@@ -198,7 +198,7 @@ class DashboardMiguel(View):
                y=data2['Confirmados'].iloc[-1],
                xref="x",
                yref="y",
-               text="<b>" + str(data2['Confirmados'].iloc[-1]) + " casos confirmados em " + str(data2.iloc[-1].name) + "<b>",
+               text="<b>" + str(data2['Confirmados'].iloc[-1]) + " casos em " + str(data2.iloc[-1].name) + "<b>",
                showarrow=True,
                arrowhead=7,
                ax=0,
@@ -215,8 +215,8 @@ class DashboardMiguel(View):
                    offsetgroup=0)
 
         layout = go.Layout(
-                 paper_bgcolor='rgba(0,0,50,0.025)',
-                 plot_bgcolor='rgba(0,0,50,0.025)')
+                 paper_bgcolor='rgba(0,0,0,0)',
+                 plot_bgcolor='rgba(0,0,0,0)')
 
         dat = [bar_fig]
 
@@ -271,9 +271,14 @@ class DashboardMiguel(View):
                offsetgroup=0)
 
 
+        layout_bar_soma_casos_semanais = go.Layout(
+                 paper_bgcolor='rgba(0,0,0,0)',
+                 plot_bgcolor='rgba(0,0,0,0)')
+
+
         dat_soma_casos_sem = [bar_soma_casos_semanais]
 
-        figura_bar_casos_semanais = go.Figure(data=dat_soma_casos_sem)
+        figura_bar_casos_semanais = go.Figure(data=dat_soma_casos_sem,layout=layout_bar_soma_casos_semanais)
 
         trace_casos_semanais = plot(figura_bar_casos_semanais, include_plotlyjs=True, output_type='div')
         
