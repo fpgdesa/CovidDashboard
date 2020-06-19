@@ -82,10 +82,13 @@ class DashboardPaty(View):
                    y = data['Novos Suspeitos'],
                    offsetgroup=0)
 
+        layout = go.Layout(
+                 paper_bgcolor='rgba(0,0,50,0.025)',
+                 plot_bgcolor='rgba(0,0,50,0.0)')
 
         dat = [bar_fig]
 
-        figura_bar= go.Figure(data=dat)
+        figura_bar= go.Figure(data=dat, layout=layout)
         
         trace2 = plot(figura_bar, include_plotlyjs=True, output_type='div')
 
