@@ -218,15 +218,16 @@
                   A área cinzenta corresponde aos casos acumulados após a reabertura oficial do comércio, ocorrida no dia 08/06/2020
                 </p>
 
-             	  {% autoescape off %}
-		  {{ plot_div }}
-		  {% endautoescape %}
+             	  
 
             </div>
             <!-- /.card -->
           </div>
         </div>
       </div>
+      {% autoescape off %}
+		  {{ plot_div }}
+		  {% endautoescape %}
 	<div class="container-fluid">
         <div class="row">
           <div class="col-12">
@@ -257,7 +258,9 @@
               </div>
               <div class="card-body">
 
-                  
+                  {% autoescape off %}
+                  {{ plot_bar_sem }}
+                  {% endautoescape %}
 
             </div>
             <!-- /.card -->
@@ -265,9 +268,7 @@
         </div>
       </div>
 
-      {% autoescape off %}
-                  {{ plot_bar_sem }}
-                  {% endautoescape %}
+
 
 
     </section>
