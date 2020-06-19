@@ -257,9 +257,7 @@
               </div>
               <div class="card-body">
 
-                  {% autoescape off %}
-                  {{ plot_bar_sem }}
-                  {% endautoescape %}
+                  
 
             </div>
             <!-- /.card -->
@@ -267,7 +265,9 @@
         </div>
       </div>
 
-
+      {% autoescape off %}
+                  {{ plot_bar_sem }}
+                  {% endautoescape %}
 
 
     </section>
