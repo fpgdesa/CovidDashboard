@@ -1,2 +1,0 @@
-sudo scp -r -i "dashboardCovid.pem"  Dados_paty.csv ubuntu@ec2-3-23-100-115.us-east-2.compute.amazonaws.com:~/CovidDashboard/dashboard/static/
-
