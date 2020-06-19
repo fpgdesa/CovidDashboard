@@ -138,10 +138,14 @@ class DashboardPaty(View):
                y = soma_confirmados_semanal_consolidado['Novos Casos'],
                offsetgroup=0)
 
+        layout_bar_soma_casos_semanais = go.Layout(
+                paper_bgcolor='rgba(0,0,0,0)',
+                plot_bgcolor='rgba(0,0,0,0)'
+                )
 
         dat_soma_casos_sem = [bar_soma_casos_semanais]
 
-        figura_bar_casos_semanais = go.Figure(data=dat_soma_casos_sem)
+        figura_bar_casos_semanais = go.Figure(data=dat_soma_casos_sem,layout=layout_bar_soma_casos_semanais)
 
         trace_casos_semanais = plot(figura_bar_casos_semanais, include_plotlyjs=True, output_type='div')
 
