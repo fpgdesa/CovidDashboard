@@ -131,6 +131,7 @@ class DashboardPaty(View):
                 #tickmode = 'array',
                 tickvals = [min(-1 * mulheres_contaminadas_paty_cons.to_numpy().flatten()),-10,-5,0,5,str(max(homens_contaminadas_paty_cons.to_numpy().flatten()))],
                 ticktext = [str(max(mulheres_contaminadas_paty_cons.to_numpy().flatten())),'10','5','0','5',str(max(homens_contaminadas_paty_cons.to_numpy().flatten()))]
+                title='Quantidade'
             )
         )
 
