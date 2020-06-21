@@ -22,11 +22,120 @@ class DashboardFront(View):
 
 
 
+
 class DashboardPaty(View):
+
+    def loadFile(self, path):
+        return pd.read_csv(data_path)
+
+    def getPopulationPyramidGraph(self):
+
+        dados_contaminados_paty = pd.read_csv('Contaminados_paty.csv')
+
+        dados_obitos_paty = pd.read_csv('Obitos_paty.csv')
+
+        mulheres_contaminadas_paty = dados_contaminados_paty[dados_contaminados_paty['Sexo'] == "Feminino"][['Idade']]
+
+        homens_contaminados_paty = dados_contaminados_paty[dados_contaminados_paty['Sexo']=='Masculino'][['Idade']]
+
+        mulheres_obito_paty = dados_obitos_paty[dados_obitos_paty['Sexo']=='Feminino'][['Idade']]
+
+        homens_obito_paty = dados_obitos_paty[dados_obitos_paty['Sexo']=='Masculino'][['Idade']]
+
+        intervalo_idade = np.arange(0,110,10)
+
+        mulheres_contaminadas_paty_cons = mulheres_contaminadas_paty.groupby(pd.cut(mulheres_contaminadas_paty.Idade, intervalo_idade)).count()
+
+        homens_contaminadas_paty_cons = homens_contaminados_paty.groupby(pd.cut(homens_contaminados_paty.Idade, intervalo_idade)).count()
+
+        mulheres_obito_paty_cons = mulheres_obito_paty.groupby(pd.cut(mulheres_obito_paty.Idade, intervalo_idade)).count()
+
+        homens_obito_paty_cons = homens_obito_paty.groupby(pd.cut(homens_obito_paty.Idade, intervalo_idade)).count()
+
+
+        a = 0.7
+        b = 9.5
+        c = -0.5
+
+        yidx =np.arange(10)
+        fig = go.Figure()
+        fig.add_trace(go.Bar(x=-1*mulheres_contaminadas_paty_cons.to_numpy().flatten(),
+                            y=yidx,
+                            orientation='h',
+                            name='Mulheres',
+                            width=1,
+                            customdata=-1*mulheres_contaminadas_paty_cons.to_numpy().flatten(),
+                            hovertemplate = "%{customdata}",
+                            marker=dict(color='cornflowerblue')
+                            ))
+
+        fig.add_trace(go.Bar(x= homens_contaminadas_paty_cons.to_numpy().flatten(),
+                            y= yidx,
+                            orientation='h',
+                            width=1,
+                            name= 'Homens',
+                            hovertemplate="%{x}",
+                            marker=dict(color='lightblue')))  
+        fig.add_scatter(x=[-a, a, a, -a],
+                        y= [b, b, c, c], fill='toself',
+                        mode='lines',
+                        fillcolor='white' , line_color='white',
+                        showlegend=False,
+                        )
+        fig.add_scatter(x= [0 ]*10,
+                        y=yidx,
+                        text=["0-10 ","10-20","20-30","30-40","40-50","50-60","60-70","70-80","80-90","90-100"],
+                        mode='text',
+                        showlegend=False,
+                        )
+
+        fig.add_trace( go.Bar(y=yidx,
+                    x=homens_obito_paty_cons.to_numpy().flatten(),
+                    orientation='h',
+                    hoverinfo='x',
+                    name= "Óbitos",
+                    showlegend=True,
+                    opacity=0.6,
+                    marker=dict(color='black')
+                    ))
+
+        fig.add_trace(go.Bar(y=yidx,
+                    x= -1 * mulheres_obito_paty_cons.to_numpy().flatten(),
+                    orientation='h',
+                    text= mulheres_obito_paty_cons.to_numpy().flatten().astype('int'),
+                    hoverinfo='text',
+                    showlegend=False,
+                    opacity=0.6,
+                    marker=dict(color='black')
+                    ))
+
+        fig.update_layout(barmode='overlay', 
+                        autosize=True,
+                        #height=500, 
+                        #width=800, 
+                        #yaxis_autorange='reversed',
+                        yaxis_visible=False,
+                        bargap=0.1,
+                        paper_bgcolor='rgba(0,0,0,0)',
+                        plot_bgcolor='rgba(0,0,0,0)'
+                        )
+
+        fig.update_layout(
+            xaxis = dict(
+                #tickmode = 'array',
+                tickvals = [min(-1 * mulheres_contaminadas_paty_cons.to_numpy().flatten()),-10,-5,0,5,str(max(homens_contaminadas_paty_cons.to_numpy().flatten()))],
+                ticktext = [str(max(mulheres_contaminadas_paty_cons.to_numpy().flatten())),'10','5','0','5',str(max(homens_contaminadas_paty_cons.to_numpy().flatten()))]
+            )
+        )
+
+
+        return plot(fig, include_plotlyjs=True, output_type='div')
+
 
     def transform_week(self,x):
 
         d = '2020-W'+str(x)
+        
         start = datetime.strptime(d + '-1', '%G-W%V-%u')
 
         end = start + timedelta(6)
@@ -105,10 +214,6 @@ class DashboardPaty(View):
 
 
         # Grafico Soma de casos semanais
-
-
-
-        [datetime.strptime(x, '%d/%m/%y') for x in data['Data'].values][-1].strftime("%V")
 
         soma_confirmados_semanal = pd.DataFrame(columns=['Semana', 'Casos'])
 
