@@ -69,8 +69,8 @@ class DashboardPaty(View):
                             text=-1 * mulheres_contaminadas_paty_cons.to_numpy().flatten().astype('int'),
                             hoverinfo='text',
                             width=1,
-                            #customdata=-1 * mulheres_contaminadas_paty_cons.to_numpy().flatten(),
-                            #hovertemplate = "%{customdata}",
+                            customdata=-1 * mulheres_contaminadas_paty_cons.to_numpy().flatten().astype('int'),
+                            hovertemplate = "%{customdata}",
                             marker=dict(color='cornflowerblue')
                             ))
 
@@ -80,7 +80,7 @@ class DashboardPaty(View):
                             width=1,
                             name= 'Homens',
                             hoverinfo='x',
-                            #hovertemplate="%{x}",
+                            hovertemplate="%{x}",
                             marker=dict(color='lightblue')))  
         fig.add_scatter(x=[-a, a, a, -a],
                         y= [b, b, c, c], fill='toself',
