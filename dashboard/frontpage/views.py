@@ -254,8 +254,10 @@ class DashboardPaty(View):
 
         trace_casos_semanais = plot(figura_bar_casos_semanais, include_plotlyjs=True, output_type='div')
 
-        
-        return render(request,"dashboard/cidades/paty/paty.html", context={'plot_div': trace,'bar_suspeitos': trace2, 'confirmados':confirmados,'curados':curados,'internados':internados,'obitos':obitos,'ultima_atu': ultima_atu,'plot_bar_sem':trace_casos_semanais})
+        grafico_piramide = self.getPopulationPyramidGraph()
+
+
+        return render(request,"dashboard/cidades/paty/paty.html", context={'plot_div': trace,'bar_suspeitos': trace2, 'confirmados':confirmados,'curados':curados,'internados':internados,'obitos':obitos,'ultima_atu': ultima_atu,'plot_bar_sem':trace_casos_semanais, 'graf_piramide_paty':grafico_piramide})
 
 
 
