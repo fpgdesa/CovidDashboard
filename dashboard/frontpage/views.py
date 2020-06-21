@@ -25,14 +25,17 @@ class DashboardFront(View):
 
 class DashboardPaty(View):
 
-    def loadFile(self, path):
+    def loadFile(self, file):
+        
+        data_path = finders.find(file)
+
         return pd.read_csv(data_path)
 
     def getPopulationPyramidGraph(self):
 
-        dados_contaminados_paty = pd.read_csv('Contaminados_paty.csv')
+        dados_contaminados_paty = self.loadFile('Contaminados_paty.csv')
 
-        dados_obitos_paty = pd.read_csv('Obitos_paty.csv')
+        dados_obitos_paty = self.loadFile('Obitos_paty.csv')
 
         mulheres_contaminadas_paty = dados_contaminados_paty[dados_contaminados_paty['Sexo'] == "Feminino"][['Idade']]
 
