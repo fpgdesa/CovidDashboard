@@ -291,15 +291,9 @@
       </div>
 
       <div>
-        
-        <script>
-          var config = {responsive: true}
-
-          Plotly.newPlot('graf_piramide_paty', config );
-
-        </script>
-
-
+        {% autoescape off %}
+        {{ graf_piramide_paty }}
+        {% endautoescape %}
       </div>
 
     </section>

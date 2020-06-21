@@ -132,7 +132,7 @@ class DashboardPaty(View):
         )
 
 
-        return plot(fig, include_plotlyjs=False, output_type='div')
+        return plot(fig, include_plotlyjs=True, output_type='div')
 
 
     def transform_week(self,x):
