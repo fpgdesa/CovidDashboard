@@ -23,8 +23,6 @@ class DashboardFront(View):
         return render(request,"dashboard/index.html")
 
 
-
-
 class DashboardPaty(View):
 
     def loadFile(self, file):
@@ -58,7 +56,7 @@ class DashboardPaty(View):
         homens_obito_paty_cons = homens_obito_paty.groupby(pd.cut(homens_obito_paty.Idade, intervalo_idade)).count()
 
 
-        a = 0.7
+        a = 0.55
         b = 9.5
         c = -0.5
 
