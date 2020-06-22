@@ -56,7 +56,7 @@ class DashboardPaty(View):
         homens_obito_paty_cons = homens_obito_paty.groupby(pd.cut(homens_obito_paty.Idade, intervalo_idade)).count()
 
 
-        a = 0.7
+        a = 0.72
         b = 9.5
         c = -0.5
 
@@ -130,8 +130,8 @@ class DashboardPaty(View):
             xaxis = dict(
                 #tickmode = 'array',
                 tickvals = [min(-1 * mulheres_contaminadas_paty_cons.to_numpy().flatten()),-10,-5,0,5,str(max(homens_contaminadas_paty_cons.to_numpy().flatten()))],
-                ticktext = [str(max(mulheres_contaminadas_paty_cons.to_numpy().flatten())),'10','5','0','5',str(max(homens_contaminadas_paty_cons.to_numpy().flatten()))],
-                title='Quantidade'
+                ticktext = [str(max(mulheres_contaminadas_paty_cons.to_numpy().flatten())),'10','5','0','5',str(max(homens_contaminadas_paty_cons.to_numpy().flatten()))]
+                #title='Quantidade'
             ),
             legend_orientation="h"
         )
