@@ -31,6 +31,24 @@ class DashboardPaty(View):
 
         return pd.read_csv(data_path)
 
+
+    def getAcumuladosComercio(self):
+
+        data = self.loadFile('Dados_paty.csv')
+
+        qtd_abertura = data[data.Data == '08/06/20'].Confirmados.values[0]
+
+        qtd_atual = data['Confirmados'].iloc[-1]
+
+        return (qtd_atual - qtd_abertura)
+
+
+    def getAcumuladoSemanal(self):
+
+
+
+
+
     def getPopulationPyramidGraph(self):
 
         dados_contaminados_paty = self.loadFile('Contaminados_paty.csv')
@@ -264,8 +282,32 @@ class DashboardPaty(View):
 
         grafico_piramide = self.getPopulationPyramidGraph()
 
+        semana_atual_accum_casos = soma_confirmados_semanal_consolidado.iloc[-1]['Novos Casos']
 
-        return render(request,"dashboard/cidades/paty/paty.html", context={'plot_div': trace,'bar_suspeitos': trace2, 'confirmados':confirmados,'curados':curados,'internados':internados,'obitos':obitos,'ultima_atu': ultima_atu,'plot_bar_sem':trace_casos_semanais, 'graf_piramide_paty':grafico_piramide})
+        semana_anterior_accum_casos = soma_confirmados_semanal_consolidado.iloc[-2]['Novos Casos']
+
+        proporcao_semana_atual_anterior = 100*(semana_atual_accum_casos/semana_anterior_accum_casos)
+
+        maximo_accum_casos =  soma_confirmados_semanal_consolidado.loc[soma_confirmados_semanal_consolidado['Novos Casos'].idxmax()]['Novos Casos']
+
+        data_maximo_casos = soma_confirmados_semanal_consolidado.loc[soma_confirmados_semanal_consolidado['Novos Casos'].idxmax()]['Semana_str']
+
+        return render(request,"dashboard/cidades/paty/paty.html", 
+        context={'plot_div': trace,
+                 'bar_suspeitos': trace2, 
+                 'confirmados':confirmados,
+                 'curados':curados,
+                 'internados':internados,
+                 'obitos':obitos,
+                 'ultima_atu': ultima_atu,
+                 'plot_bar_sem':trace_casos_semanais, 
+                 'graf_piramide_paty':grafico_piramide,
+                 'acumulado_comercio': self.getAcumuladosComercio(),
+                 'semana_atual_accum_casos':semana_atual_accum_casos,
+                 'proporcao_atual_anterior_accum': proporcao_semana_atual_anterior,
+                 'maximo_accum_casos':maximo_accum_casos,
+                 'data_maximo_accum_casos': data_maximo_casos
+                 })
 
 
 
