@@ -43,10 +43,6 @@ class DashboardPaty(View):
         return (qtd_atual - qtd_abertura)
 
 
-    def getAcumuladoSemanal(self):
-
-
-
 
 
     def getPopulationPyramidGraph(self):
