@@ -229,11 +229,9 @@ class DashboardPaty(View):
 
         internados = str(int(data2['Internados'].iloc[-1]))
 
-
         obitos = str(int(data2['Obitos'].iloc[-1]))
 
         ultima_atu = data2.iloc[-1].name
-
 
         # Grafico Soma de casos semanais
 
@@ -282,7 +280,7 @@ class DashboardPaty(View):
 
         semana_anterior_accum_casos = soma_confirmados_semanal_consolidado.iloc[-2]['Novos Casos']
 
-        proporcao_semana_atual_anterior = 100*(semana_atual_accum_casos/semana_anterior_accum_casos)
+        proporcao_semana_atual_anterior = format(100*(semana_atual_accum_casos/semana_anterior_accum_casos)),'.1f')
 
         maximo_accum_casos =  soma_confirmados_semanal_consolidado.loc[soma_confirmados_semanal_consolidado['Novos Casos'].idxmax()]['Novos Casos']
 
