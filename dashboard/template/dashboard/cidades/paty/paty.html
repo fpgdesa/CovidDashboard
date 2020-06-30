@@ -263,7 +263,7 @@
                 <p class="card-text">
                   O gráfico apresenta os acumulado semanal de casos confirmados. 
                   A semana atual acumula <b> {% autoescape off %}{{ semana_atual_accum_casos }}{% endautoescape %} casos confirmados</b>,
-                  o que representa <b> {% autoescape off %}{{ proporcao_atual_anterior_accum }}{% endautoescape %} % dos casos confirmados</b> na semana anterior. 
+                  o que representa <b> {% autoescape off %}{{ condicao_semana }}{% endautoescape %} de {% autoescape off %}{{ proporcao_atual_anterior_accum }}{% endautoescape %} % dos casos confirmados</b>  perante a semana anterior. 
                   O recorde de novos casos acumulados aconteceu na semana <b> {% autoescape off %}{{ data_maximo_accum_casos }}{% endautoescape %} </b>,
                   quando foram registrados <b> {% autoescape off %}{{ maximo_accum_casos }}{% endautoescape %}</b> casos confirmados.
                   

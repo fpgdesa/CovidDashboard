@@ -282,6 +282,15 @@ class DashboardPaty(View):
 
         proporcao_semana_atual_anterior = int(100*(semana_atual_accum_casos/semana_anterior_accum_casos))
 
+        condicao = ''
+        if(proporcao_semana_atual_anterior > 100):
+            proporcao_semana_atual_anterior = proporcao_semana_atual_anterior - 100
+            condicao = 'aumento'
+        else:
+            proporcao_semana_atual_anterior = 100 - proporcao_semana_atual_anterior
+            condicao = 'reducao'
+
+
         maximo_accum_casos =  soma_confirmados_semanal_consolidado.loc[soma_confirmados_semanal_consolidado['Novos Casos'].idxmax()]['Novos Casos']
 
         data_maximo_casos = soma_confirmados_semanal_consolidado.loc[soma_confirmados_semanal_consolidado['Novos Casos'].idxmax()]['Semana_str']
@@ -300,7 +309,8 @@ class DashboardPaty(View):
                  'semana_atual_accum_casos':semana_atual_accum_casos,
                  'proporcao_atual_anterior_accum': proporcao_semana_atual_anterior,
                  'maximo_accum_casos':maximo_accum_casos,
-                 'data_maximo_accum_casos': data_maximo_casos
+                 'data_maximo_accum_casos': data_maximo_casos,
+                 'condicao_semana': condicao
                  })
 
 
