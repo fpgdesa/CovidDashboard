@@ -280,15 +280,17 @@ class DashboardPaty(View):
 
         semana_anterior_accum_casos = soma_confirmados_semanal_consolidado.iloc[-2]['Novos Casos']
 
-        proporcao_semana_atual_anterior = int(100*(semana_atual_accum_casos/semana_anterior_accum_casos))
+        semana_retrasada_accum_casos = soma_confirmados_semanal_consolidado.iloc[-3]['Novos Casos']
+
+        proporcao_semana_atual_anterior = int(100*(semana_anterior_accum_casos/ semana_retrasada_accum_casos = soma_confirmados_semanal_consolidado.iloc[-3]['Novos Casos']))
 
         condicao = ''
         if(proporcao_semana_atual_anterior > 100):
-            proporcao_semana_atual_anterior = proporcao_semana_atual_anterior - 100
-            condicao = 'aumento'
+            semana_anterior_accum_casos = proporcao_semana_atual_anterior - 100
+            condicao = ' um aumento'
         else:
             proporcao_semana_atual_anterior = 100 - proporcao_semana_atual_anterior
-            condicao = 'reducao'
+            condicao = 'uma redução'
 
 
         maximo_accum_casos =  soma_confirmados_semanal_consolidado.loc[soma_confirmados_semanal_consolidado['Novos Casos'].idxmax()]['Novos Casos']
@@ -307,6 +309,7 @@ class DashboardPaty(View):
                  'graf_piramide_paty':grafico_piramide,
                  'acumulado_comercio': self.getAcumuladosComercio(),
                  'semana_atual_accum_casos':semana_atual_accum_casos,
+                 'semana_anterior_accum_casos': semana_anterior_accum_casos,
                  'proporcao_atual_anterior_accum': proporcao_semana_atual_anterior,
                  'maximo_accum_casos':maximo_accum_casos,
                  'data_maximo_accum_casos': data_maximo_casos,
