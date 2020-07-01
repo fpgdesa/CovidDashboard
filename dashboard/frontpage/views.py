@@ -282,7 +282,7 @@ class DashboardPaty(View):
 
         semana_retrasada_accum_casos = soma_confirmados_semanal_consolidado.iloc[-3]['Novos Casos']
 
-        proporcao_semana_atual_anterior = int(100*(semana_anterior_accum_casos/ semana_retrasada_accum_casos = soma_confirmados_semanal_consolidado.iloc[-3]['Novos Casos']))
+        proporcao_semana_atual_anterior = int(100*(semana_anterior_accum_casos/ semana_retrasada_accum_casos))
 
         condicao = ''
         if(proporcao_semana_atual_anterior > 100):
