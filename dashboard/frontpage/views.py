@@ -286,7 +286,7 @@ class DashboardPaty(View):
 
         condicao = ''
         if(proporcao_semana_atual_anterior > 100):
-            semana_anterior_accum_casos = proporcao_semana_atual_anterior - 100
+            proporcao_semana_atual_anterior = proporcao_semana_atual_anterior - 100
             condicao = ' um aumento'
         else:
             proporcao_semana_atual_anterior = 100 - proporcao_semana_atual_anterior
