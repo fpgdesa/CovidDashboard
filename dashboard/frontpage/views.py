@@ -357,7 +357,7 @@ class DashboardMiguel(View):
 
         data2 = data2.set_index('dt_evento')
 
-        fig = data2[['Confirmados']].iplot(asFigure=True, kind='scatter',
+        fig = data2[['total_casos']].iplot(asFigure=True, kind='scatter',
                xTitle='Data',
                yTitle='Número de Casos',
                vspan={'x0':'01/06/20','x1':data2.iloc[-1].name,
@@ -368,10 +368,10 @@ class DashboardMiguel(View):
                annotations=[
                dict(
                x=data2.iloc[-1].name,
-               y=data2['Confirmados'].iloc[-1],
+               y=data2['total_casos'].iloc[-1],
                xref="x",
                yref="y",
-               text="<b>" + str(data2['Confirmados'].iloc[-1]) + " casos em " + str(data2.iloc[-1].name) + "<b>",
+               text="<b>" + str(data2['total_casos'].iloc[-1]) + " casos em " + str(data2.iloc[-1].name) + "<b>",
                showarrow=True,
                arrowhead=7,
                ax=0,
