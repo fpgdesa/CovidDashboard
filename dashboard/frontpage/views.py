@@ -418,12 +418,25 @@ class DashboardMiguel(View):
 
         data = pd.read_csv(data_path)
 
+         data_path = finders.find('Miguel_ses.csv')
 
-#        trace = plot([Scatter(x = data['Data'],
- #                  y = data['Confirmados'],
-  #                 mode = 'lines')],output_type='div')
-        
-       
+        parse_dates = ['dt_sintoma', 'dt_coleta_dt_notif','dt_evento']
+
+        data_ses = pd.read_csv(data_path , error_bad_lines=False, delimiter=";", low_memory=False,parse_dates=parse_dates)
+
+        data_ses = data_ses[~ data_ses['municipio_res'].isnull()]
+
+        data_ses.municipio_res = data_ses.municipio_res.convert_dtypes(str)
+
+        data_ses_Miguel_Pereira = data_ses[data_ses.municipio_res.str.contains("MIGUEL PEREIRA")]
+
+        data_ses_Miguel_Pereira.sort_values(by=['dt_evento'], inplace=True, ascending=True)
+
+        data_ses_Miguel_Pereira['total_casos'] = [index + 1 for index in range(len(data_ses_Miguel_Pereira))]
+
+        data_ses_Miguel_Pereira['dt_evento'] = data_ses_Miguel_Pereira['dt_evento'].dt.strftime('%d/%m/%Y')
+
+      
         data2 = data.set_index('Data')        
 
 
@@ -455,28 +468,26 @@ class DashboardMiguel(View):
 
         # Grafico Soma de casos semanais
 
-        [datetime.strptime(x, '%d/%m/%y') for x in data['Data'].values][-1].strftime("%V")
-
         soma_confirmados_semanal = pd.DataFrame(columns=['Semana', 'Casos'])
 
-        convert = lambda date: datetime.strptime(date, '%d/%m/%y')
+        convert = lambda date: datetime.strptime(date, '%d/%m/%Y')
 
-        for i in range(len(data) ):
-
-            data_atual = convert(data['Data'].values[i])
-
+        for i in range(len(data_ses_Miguel_Pereira) ):
+            
+            data_atual = convert(data_ses_Miguel_Pereira['dt_evento'].values[i])
+            
             semana = data_atual.strftime("%V")
-
-            conta_casos = data['Confirmados'][i]
-
+            
+            conta_casos = data_ses_Miguel_Pereira['total_casos'].values[i]
+            
             soma_confirmados_semanal.loc[i] = [semana] + [conta_casos]
+    
 
+    
 
         soma_confirmados_semanal['Novos Casos'] = soma_confirmados_semanal['Casos'].diff().fillna(soma_confirmados_semanal['Casos'].iloc[0])
 
-
         soma_confirmados_semanal_consolidado  = soma_confirmados_semanal[['Semana','Novos Casos']].groupby('Semana').sum()
-
 
         soma_confirmados_semanal_consolidado['Semana_str'] = [self.transform_week(int(x)) for x in soma_confirmados_semanal_consolidado.index]
 
