@@ -333,6 +333,31 @@ class DashboardMiguel(View):
 
         return start + " - " + end
 
+    def get_info(self):
+
+        data_path = finders.find('Miguel_ses.csv')
+
+        parse_dates = ['dt_sintoma', 'dt_coleta_dt_notif','dt_evento']
+
+        data_ses = pd.read_csv(data_path , error_bad_lines=False, delimiter=";", low_memory=False,parse_dates=parse_dates)
+
+        data_ses = data_ses[~ data_ses['municipio_res'].isnull()]
+
+        data_ses.municipio_res = data_ses.municipio_res.convert_dtypes(str)
+
+        data_ses_Miguel_Pereira = data_ses[data_ses.municipio_res.str.contains("MIGUEL PEREIRA")]
+
+        data_ses_Miguel_Pereira.sort_values(by=['dt_evento'], inplace=True, ascending=True)
+
+        data_ses_Miguel_Pereira['total_casos'] = [index + 1 for index in range(len(data_ses_Miguel_Pereira))]
+
+        data_ses_Miguel_Pereira['dt_evento'] = data_ses_Miguel_Pereira['dt_evento'].dt.strftime('%d/%m/%Y')
+
+        current_number_cases = str(data2.iloc[-1].name)
+
+        return current_number_cases
+
+
     def cumulative_cases(self):
         
         data_path = finders.find('Miguel_ses.csv')
@@ -416,7 +441,7 @@ class DashboardMiguel(View):
         
         trace2 = plot(figura_bar, include_plotlyjs=True, output_type='div')
 
-        confirmados = str(data2['Confirmados'].iloc[-1])
+        confirmados = self.get_info()
 
         curados = str(int(data2['Curados'].iloc[-1]))
 
