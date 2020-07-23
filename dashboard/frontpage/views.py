@@ -339,7 +339,7 @@ class DashboardMiguel(View):
 
         parse_dates = ['dt_sintoma', 'dt_coleta_dt_notif','dt_evento']
 
-        data_ses = pd.read_csv('data_path', error_bad_lines=False, delimiter=";", low_memory=False,parse_dates=parse_dates)
+        data_ses = pd.read_csv(data_path , error_bad_lines=False, delimiter=";", low_memory=False,parse_dates=parse_dates)
 
         data_ses = data_ses[~ data_ses['municipio_res'].isnull()]
 
