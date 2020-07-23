@@ -333,7 +333,7 @@ class DashboardMiguel(View):
 
         return start + " - " + end
 
-     def cumulative_cases(self):
+    def cumulative_cases(self):
         
         data_path = finders.find('DADOS.CSV.csv')
 
@@ -475,6 +475,5 @@ class DashboardMiguel(View):
         trace = self.cumulative_cases()
         
         return render(request,"dashboard/cidades/miguel/miguel.html", context={'plot_div_miguel': trace,'bar_suspeitos_miguel': trace2, 'confirmados_miguel':confirmados,'curados_miguel':curados,'internados_miguel':internados,'obitos_miguel':obitos,'ultima_atu_miguel': ultima_atu,'plot_bar_sem_miguel':trace_casos_semanais})
-
 
 
