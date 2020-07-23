@@ -335,7 +335,7 @@ class DashboardMiguel(View):
 
     def cumulative_cases(self):
         
-        data_path = finders.find('DADOS.CSV.csv')
+        data_path = finders.find('Miguel_ses.csv')
 
         parse_dates = ['dt_sintoma', 'dt_coleta_dt_notif','dt_evento']
 
