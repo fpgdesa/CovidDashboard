@@ -418,7 +418,7 @@ class DashboardMiguel(View):
 
         data = pd.read_csv(data_path)
 
-         data_path = finders.find('Miguel_ses.csv')
+        data_path = finders.find('Miguel_ses.csv')
 
         parse_dates = ['dt_sintoma', 'dt_coleta_dt_notif','dt_evento']
 
