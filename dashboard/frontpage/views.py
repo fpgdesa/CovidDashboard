@@ -353,7 +353,7 @@ class DashboardMiguel(View):
 
         data_ses_Miguel_Pereira['dt_evento'] = data_ses_Miguel_Pereira['dt_evento'].dt.strftime('%d/%m/%Y')
 
-        current_number_cases = str(data2.iloc[-1].name)
+        current_number_cases = data_ses_Miguel_Pereira['total_casos'].iloc[-1]
 
         return current_number_cases
 
