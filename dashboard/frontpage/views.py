@@ -168,7 +168,7 @@ class DashboardPaty(View):
 
         return start + " - " + end
 
-    
+
     def get(self,request):
     
         data_path = finders.find('Dados_paty.csv')
@@ -333,20 +333,29 @@ class DashboardMiguel(View):
 
         return start + " - " + end
 
-    
-    def get(self,request):
-    
-        data_path = finders.find('Dados_miguel.csv')
-
-        data = pd.read_csv(data_path)
-
-
-#        trace = plot([Scatter(x = data['Data'],
- #                  y = data['Confirmados'],
-  #                 mode = 'lines')],output_type='div')
+     def cumulative_cases(self):
         
-       
-        data2 = data.set_index('Data')
+        data_path = finders.find('DADOS.CSV.csv')
+
+        parse_dates = ['dt_sintoma', 'dt_coleta_dt_notif','dt_evento']
+
+        data_ses = pd.read_csv('data_path', error_bad_lines=False, delimiter=";", low_memory=False,parse_dates=parse_dates)
+
+        data_ses = data_ses[~ data_ses['municipio_res'].isnull()]
+
+        data_ses.municipio_res = data_ses.municipio_res.convert_dtypes(str)
+
+        data_ses_Miguel_Pereira = data_ses[data_ses.municipio_res.str.contains("MIGUEL PEREIRA")]
+
+        data_ses_Miguel_Pereira.sort_values(by=['dt_evento'], inplace=True, ascending=True)
+
+        data_ses_Miguel_Pereira['total_casos'] = [index + 1 for index in range(len(data_ses_Miguel_Pereira))]
+
+        data_ses_Miguel_Pereira['dt_evento'] = data_ses_Miguel_Pereira['dt_evento'].dt.strftime('%d/%m/%Y')
+
+        data2 = data_ses_Miguel_Pereira
+
+        data2 = data2.set_index('dt_evento')
 
         fig = data2[['Confirmados']].iplot(asFigure=True, kind='scatter',
                xTitle='Data',
@@ -371,7 +380,26 @@ class DashboardMiguel(View):
         fig['data'][0]['line'] = {
             'color': 'rgba(63, 63, 190, 1.0)', 'dash': 'solid', 'shape': 'linear', 'width': 3.0}
 
-        trace =  plot(fig, include_plotlyjs=True, output_type='div')
+        return  plot(fig, include_plotlyjs=True, output_type='div')
+
+
+
+
+
+
+    def get(self,request):
+    
+        data_path = finders.find('Dados_miguel.csv')
+
+        data = pd.read_csv(data_path)
+
+
+#        trace = plot([Scatter(x = data['Data'],
+ #                  y = data['Confirmados'],
+  #                 mode = 'lines')],output_type='div')
+        
+       
+        data2 = data.set_index('Data')        
 
 
         bar_fig = go.Bar(x = data['Data'],
@@ -401,8 +429,6 @@ class DashboardMiguel(View):
 
 
         # Grafico Soma de casos semanais
-
-
 
         [datetime.strptime(x, '%d/%m/%y') for x in data['Data'].values][-1].strftime("%V")
 
@@ -445,6 +471,8 @@ class DashboardMiguel(View):
         figura_bar_casos_semanais = go.Figure(data=dat_soma_casos_sem,layout=layout_bar_soma_casos_semanais)
 
         trace_casos_semanais = plot(figura_bar_casos_semanais, include_plotlyjs=True, output_type='div')
+
+        trace = self.cumulative_cases()
         
         return render(request,"dashboard/cidades/miguel/miguel.html", context={'plot_div_miguel': trace,'bar_suspeitos_miguel': trace2, 'confirmados_miguel':confirmados,'curados_miguel':curados,'internados_miguel':internados,'obitos_miguel':obitos,'ultima_atu_miguel': ultima_atu,'plot_bar_sem_miguel':trace_casos_semanais})
 
