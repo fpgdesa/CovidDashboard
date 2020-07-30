@@ -359,7 +359,7 @@ class DashboardMiguel(View):
 
 	valor = data_frame_dt[data_frame_dt == min(data_frame_total[data_frame_dt_ev.isnull()].values) -1
 
-	data_ses_Miguel_Pereira['dt_evento'].fillna(value = valor].values[0], inplace = True)
+	data_frame_dt_ev.fillna(value = valor].values[0], inplace = True)
 
         current_number_cases = data_ses_Miguel_Pereira['total_casos'].iloc[-1]
 
