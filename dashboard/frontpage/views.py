@@ -353,13 +353,11 @@ class DashboardMiguel(View):
 
         data_ses_Miguel_Pereira['dt_evento'] = data_ses_Miguel_Pereira['dt_evento'].dt.strftime('%d/%m/%Y')
 
-	    data_frame_dt_ev = data_ses_Miguel_Pereira['dt_evento']
-
-	    data_frame_total = data_ses_Miguel_Pereira['total_casos']
-
-	    valor = data_frame_dt[data_frame_dt == min(data_frame_total[data_frame_dt_ev.isnull()].values) -1
-
-	    data_frame_dt_ev.fillna(value = valor].values[0], inplace = True)
+        data_ses_Miguel_Pereira['dt_evento'].\
+        fillna(value=data_ses_Miguel_Pereira['dt_evento']\
+        [data_ses_Miguel_Pereira.total_casos== \
+        min(data_ses_Miguel_Pereira.total_casos[data_ses_Miguel_Pereira['dt_evento'].isnull()].values) -1 ].\
+        values[0], inplace = True)
 
         current_number_cases = data_ses_Miguel_Pereira['total_casos'].iloc[-1]
 
@@ -386,13 +384,11 @@ class DashboardMiguel(View):
 
         data_ses_Miguel_Pereira['dt_evento'] = data_ses_Miguel_Pereira['dt_evento'].dt.strftime('%d/%m/%Y')
 
-        data_frame_dt_ev = data_ses_Miguel_Pereira['dt_evento']
-
-	    data_frame_total = data_ses_Miguel_Pereira['total_casos']
-
-	    valor = data_frame_dt[data_frame_dt == min(data_frame_total[data_frame_dt_ev.isnull()].values) -1
-
-	    data_frame_dt_ev.fillna(value = valor].values[0], inplace = True)
+        data_ses_Miguel_Pereira['dt_evento'].\
+        fillna(value=data_ses_Miguel_Pereira['dt_evento']\
+        [data_ses_Miguel_Pereira.total_casos== \
+        min(data_ses_Miguel_Pereira.total_casos[data_ses_Miguel_Pereira['dt_evento'].isnull()].values) -1 ].\
+        values[0], inplace = True)
 
         data2 = data_ses_Miguel_Pereira
 
@@ -452,13 +448,11 @@ class DashboardMiguel(View):
 
         data_ses_Miguel_Pereira['dt_evento'] = data_ses_Miguel_Pereira['dt_evento'].dt.strftime('%d/%m/%Y')
 
-        data_frame_dt_ev = data_ses_Miguel_Pereira['dt_evento']
-
-	    data_frame_total = data_ses_Miguel_Pereira['total_casos']
-
-	    valor = data_frame_dt[data_frame_dt == min(data_frame_total[data_frame_dt_ev.isnull()].values) -1
-
-	    data_frame_dt_ev.fillna(value = valor].values[0], inplace = True)
+        data_ses_Miguel_Pereira['dt_evento'].\
+        fillna(value=data_ses_Miguel_Pereira['dt_evento']\
+        [data_ses_Miguel_Pereira.total_casos== \
+        min(data_ses_Miguel_Pereira.total_casos[data_ses_Miguel_Pereira['dt_evento'].isnull()].values) -1 ].\
+        values[0], inplace = True)
       
         data2 = data.set_index('Data')        
 
