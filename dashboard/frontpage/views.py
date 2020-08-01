@@ -13,7 +13,7 @@ from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
 import os
 from django.conf import settings
 from django.contrib.staticfiles import finders
-from datetime import datetime,timedelta
+from datetime import datetime,timedelta, date
 import numpy as np
 
 
@@ -480,7 +480,9 @@ class DashboardMiguel(View):
 
         obitos = str(int(data2['Obitos'].iloc[-1]))
 
-        ultima_atu = data2.iloc[-1].name
+	hoje = datetime.now()	
+
+        ultima_atu = hoje.strftime("%m/%d/%Y")
 
 
         # Grafico Soma de casos semanais
