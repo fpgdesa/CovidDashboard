@@ -480,9 +480,9 @@ class DashboardMiguel(View):
 
         obitos = str(int(data2['Obitos'].iloc[-1]))
 
-	hoje = datetime.now()	
+        hoje = datetime.now()	
 
-        ultima_atu = hoje.strftime("%m/%d/%Y")
+        ultima_atu = hoje.strftime("%d/%m/%Y")
 
 
         # Grafico Soma de casos semanais
